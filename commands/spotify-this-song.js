@@ -4,18 +4,34 @@ var keys = require("../keys.js");
 var spotify = new Spotify(keys.spotify);
 
 function search(query) {
-    spotify
-      .search({ type: "track", query: query, limit: 1 })
-      .then(function(response) {
-        // console.log(JSON.stringify(response, null, 2));
-        console.log(`Artist: ${response.tracks.items[0].artists[0].name}`);
-        console.log(`Song Title: ${response.tracks.items[0].name}`);
-        console.log(`Preview Link: ${response.tracks.items[0].external_urls.spotify}`);
-        console.log(`Album: ${response.tracks.items[0].album.name}`);
-      })
-      .catch(function(error) {
-        console.log(error);
-      });
+    if (!query) {
+        spotify
+          .request("https://api.spotify.com/v1/tracks/0hrBpAOgrt8RXigk83LLNE") //The Sign by Ace of Base
+          .then(function(response) {
+            displayTrack(response);
+          })
+          .catch(function(error) {
+            console.log(error);
+          });
+    } else {
+        spotify
+            .search({ type: "track", query: query, limit: 1 })
+            .then(function(response) {
+                displayTrack(response.tracks.items[0]);
+            })
+            .catch(function(error) {
+                console.log(error);
+            });
+    }
+}
+
+function displayTrack(track) {
+    console.log(`Artist: ${track.artists[0].name}`);
+    console.log(`Song Title: ${track.name}`);
+    console.log(
+      `Preview Link: ${track.external_urls.spotify}`
+    );
+    console.log(`Album: ${track.album.name}`);
 }
 
 module.exports = {
