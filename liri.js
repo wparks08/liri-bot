@@ -2,21 +2,19 @@ require("dotenv").config();
 
 var axios = require("axios");
 var fs = require("fs");
-var Spotify = require("node-spotify-api");
 
 var keys = require("./keys.js");
-
-var spotify = new Spotify(keys.spotify);
+var commands = require("./commands.js");
 
 var command = process.argv[2];
 var parameter = process.argv.slice(3).join(" ");
 
 switch(command) {
     case "concert-this":
-        //do stuff
+        commands.concertThis.search(parameter);
         break;
     case "spotify-this-song":
-        //do stuff
+        commands.spotifyThisSong.search(parameter);
         break;
     case "movie-this":
         //do stuff
@@ -27,12 +25,3 @@ switch(command) {
     default:
         console.log("Unrecognized command. Please use one of:\nconcert-this\nspotify-this-song\nmovie-this\ndo-what-it-says");
 }
-
-
-spotify
-    .search({ type: 'track', query: parameter })
-    .then(function(response) {
-        console.log(JSON.stringify(response, null, 2));
-    }).catch(function(error) {
-        console.log(error);
-    });
