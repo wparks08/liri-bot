@@ -11,19 +11,30 @@ var parameter = process.argv.slice(3).join(" ");
 
 console.log(""); //give some whitespace before result
 
-switch(command) {
-    case "concert-this":
-        commands.concertThis.search(parameter);
-        break;
-    case "spotify-this-song":
-        commands.spotifyThisSong.search(parameter);
-        break;
-    case "movie-this":
-        commands.movieThis.search(parameter);
-        break;
-    case "do-what-it-says":
-        //do stuff
-        break;
-    default:
-        console.log("Unrecognized command. Please use one of:\nconcert-this\nspotify-this-song\nmovie-this\ndo-what-it-says");
+function processCommand() {
+    switch (command) {
+        case "concert-this":
+            commands.concertThis.search(parameter);
+            break;
+        case "spotify-this-song":
+            commands.spotifyThisSong.search(parameter);
+            break;
+        case "movie-this":
+            commands.movieThis.search(parameter);
+            break;
+        case "do-what-it-says":
+            var data = commands.doWhatItSays.getDataFromFile();
+            command = data[0];
+            parameter = data[1];
+            if (command != "do-what-it-says") {
+                processCommand();
+            } else {
+                console.log("File data invalid. Please use one of:\n    concert-this\n    spotify-this-song\n    movie-this\nIn the file.")
+            }
+            break;
+        default:
+            console.log("Unrecognized command. Please use one of:\n    concert-this\n    spotify-this-song\n    movie-this\n    do-what-it-says");
+    }
 }
+
+processCommand();
