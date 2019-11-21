@@ -26,12 +26,10 @@ function search(query) {
 }
 
 function displayTrack(track) {
-    console.log(`Artist: ${track.artists[0].name}`);
-    console.log(`Song Title: ${track.name}`);
-    console.log(
-      `Preview Link: ${track.external_urls.spotify}`
-    );
-    console.log(`Album: ${track.album.name}`);
+    console.log(`       Artist: ${track.artists[0].name}`);
+    console.log(`   Song Title: ${track.name}`);
+    console.log(` Preview Link: ${track.external_urls.spotify}`);
+    console.log(`        Album: ${track.album.name}`);
 }
 
 module.exports = {

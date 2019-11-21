@@ -8,14 +8,14 @@ function search(query) {
     axios.get(
         "https://www.omdbapi.com/?t=" + query + "&apikey=trilogy"
     ).then(function(response) {
-        console.log(`Title: ${response.data.Title}`);
-        console.log(`Year: ${response.data.Year}`);
-        console.log(`IMDB Rating: ${getRating(response.data.Ratings, IMDB)}`);
-        console.log(`Rotten Tomatoes Rating: ${getRating(response.data.Ratings, ROTTEN_TOMATOES)}`);
-        console.log(`Country Produced: ${response.data.Country}`);
-        console.log(`Language: ${response.data.Language}`);
-        console.log(`Plot: ${response.data.Plot}`);
-        console.log(`Actors: ${response.data.Actors}`);
+        console.log(`                  Title: ${response.data.Title}`);
+        console.log(`                   Year: ${response.data.Year}`);
+        console.log(`            IMDB Rating: ${getRating(response.data.Ratings, IMDB)}`);
+        console.log(` Rotten Tomatoes Rating: ${getRating(response.data.Ratings, ROTTEN_TOMATOES)}`);
+        console.log(`       Country Produced: ${response.data.Country}`);
+        console.log(`               Language: ${response.data.Language}`);
+        console.log(`                   Plot: ${response.data.Plot}`);
+        console.log(`                 Actors: ${response.data.Actors}`);
     }).catch(function(error) {
         console.log(error);
     })
