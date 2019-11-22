@@ -9,8 +9,6 @@ var commands = require("./commands");
 var command = process.argv[2];
 var parameter = process.argv.slice(3).join(" ");
 
-console.log(""); //give some whitespace before result
-
 function processCommand() {
     switch (command) {
         case "concert-this":

@@ -1,14 +1,16 @@
 var Spotify = require("node-spotify-api");
 var keys = require("../keys.js");
+var log = require("../log");
 
 var spotify = new Spotify(keys.spotify);
 
 function search(query) {
+  log.toAll(`\nSearching for a song titled ${query}\n\n`);
     if (!query) {
         spotify
           .request("https://api.spotify.com/v1/tracks/0hrBpAOgrt8RXigk83LLNE") //The Sign by Ace of Base
           .then(function(response) {
-            displayTrack(response);
+            log.toAll(getOutputString(response));
           })
           .catch(function(error) {
             console.log(error);
@@ -17,7 +19,7 @@ function search(query) {
         spotify
             .search({ type: "track", query: query, limit: 1 })
             .then(function(response) {
-                displayTrack(response.tracks.items[0]);
+                log.toAll(getOutputString(response.tracks.items[0]));
             })
             .catch(function(error) {
                 console.log(error);
@@ -25,11 +27,11 @@ function search(query) {
     }
 }
 
-function displayTrack(track) {
-    console.log(`       Artist: ${track.artists[0].name}`);
-    console.log(`   Song Title: ${track.name}`);
-    console.log(` Preview Link: ${track.external_urls.spotify}`);
-    console.log(`        Album: ${track.album.name}`);
+function getOutputString(track) {
+    return `       Artist: ${track.artists[0].name}\n` +
+           `   Song Title: ${track.name}\n` +
+           ` Preview Link: ${track.external_urls.spotify}\n` +
+           `        Album: ${track.album.name}\n`;
 }
 
 module.exports = {
