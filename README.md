@@ -32,7 +32,7 @@ Where command is one of:
 
 **This command will grab a command from a local text file, `random.txt`. The text file should only contain one command accompanied by a search term, separated by a space. On the command line, omit `search term` when using this command.
 <!-- 4. Include screenshots, gifs, or videos of the app functioning -->
-## Screenshots / Example Usage
+## Usage
 `concert-this`
 
 ![concert-this](./assets/img/concert-this-example.png)
@@ -56,3 +56,5 @@ Where command is one of:
 <!-- 7. State your role in the app development -->
 
 ## Credits
+
+- <b>Developed By</b>: Will Parks -- [wparks08](https://www.github.com/wparks08)
